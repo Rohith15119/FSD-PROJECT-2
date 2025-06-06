@@ -1,0 +1,108 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: hsl(283, 49%, 46%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header, footer {
+  font-size: larger;
+  text-align: center;
+  padding: 10px;
+  color: aliceblue;
+  background-color: hsl(249, 66%, 28%);
+}
+
+main {
+  background-color: hsla(60, 100%, 66%, 0.709);
+  padding: 80px 1px 50px 30px;
+  margin: auto;
+  margin-top: auto;
+  width: 90%;
+  max-width: 1500px;
+  border-radius: 52px;
+  border: 5px groove blue;
+  box-shadow: 2px 2px 2px black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+p.js-score {
+  background-color: hsl(299, 60%, 66%);
+  padding: 20px 40px;
+  text-align: center;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 1.5em;
+  border-radius: 15px;
+  width: 100%;
+  color : hsl(248, 26%, 88%);
+  max-width: 600px;
+  border-radius: 15px;
+  border : 5px hsla(241, 88%, 27%, 0.9) solid;
+}
+
+button {
+  width: 150px;
+  height: 150px;
+  border-radius: 25px;
+  margin-right: 30px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', sans-serif;
+  font-size: larger;
+  font-style: oblique;
+  transition: background-color 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+
+#Rock {
+  background-color: hsla(0, 75%, 45%, 0.709);
+}
+#Paper {
+  background-color: hsla(58, 97%, 52%, 0.709);
+}
+#Scissor {
+  background-color: hsla(180, 90%, 49%, 0.709);
+}
+#Reset {
+  background-color: hsla(262, 71%, 38%, 0.9);
+}
+
+.ButtonDesign {
+  background-color: hsla(235, 83%, 54%, 0.709);
+  width: 100px;
+  height: 50px;
+  color: white;
+}
+
+#Rock:hover, #Paper:hover, #Scissor:hover, #Reset:hover {
+  background-color: hsla(130, 85%, 51%, 0.9);
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .button-row {
+    flex-direction: column;
+  }
+
+  button {
+    width: 80vw;
+    max-width: 250px;
+    height: 120px;
+  }
+
+  #Reset {
+    height: 50px;
+  }
+
+  p.js-score {
+    width: 90%;
+  }
+}

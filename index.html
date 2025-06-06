@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="CSS.css">  
+    <title>JavaScript</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <header>
+        <h2> &#128511; Rock - Paper - Scissor Game &#128511;</h2>
+    </header>
+
+    <main>
+        <div>
+        <button id="Rock">Rock</button>
+        <button id="Paper">Paper</button>
+        <button id="Scissor">Scissor</button>
+        <button id="Reset">Reset Score</button>
+        </div>
+        <p class="js-score"></p> 
+ 
+        <script>
+            let movs = JSON.parse(localStorage.getItem('score')) || {
+                wins: 0,
+                loss: 0,
+                ties: 0
+            };
+
+            document.getElementById("Rock").addEventListener("click", handleClick);
+            document.getElementById("Paper").addEventListener("click", handleClick);
+            document.getElementById("Scissor").addEventListener("click", handleClick);
+            document.getElementById("Reset").addEventListener("click", handleClick);
+
+            function handleClick(event) {
+                const userMove = event.target.id;
+
+                if (userMove === 'Reset') {
+                    movs.wins = 0;
+                    movs.loss = 0;
+                    movs.ties = 0;
+                    localStorage.setItem('score', JSON.stringify(movs));
+                    updateScoreDisplay();
+                    return;
+                }
+
+                const moves = ["Rock", "Paper", "Scissor"];
+                const computerMove = moves[Math.floor(Math.random() * 3)];
+
+                let result = "";
+
+                if (userMove === computerMove) {
+                    result = "It's a Draw!";
+                    movs.ties += 1;
+                } else if (
+                    (userMove === "Rock" && computerMove === "Scissor") ||
+                    (userMove === "Paper" && computerMove === "Rock") ||
+                    (userMove === "Scissor" && computerMove === "Paper")
+                ) {
+                    result = "You Win!";
+                    movs.wins += 1;
+                } else {
+                    result = "You Lose!";
+                    movs.loss += 1;
+                }
+
+                localStorage.setItem('score', JSON.stringify(movs));
+                updateScoreDisplay();
+
+                Swal.fire({
+                    title: result,
+                    text: `You chose ${userMove}, computer chose ${computerMove}.`,
+                    icon: result === "You Win!" ? "success" :
+                          result === "It's a Draw!" ? "info" : "error",
+                    customClass: {
+                        confirmButton: 'ButtonDesign'
+                    },
+                    buttonsStyling: false
+                });
+            }
+
+            function updateScoreDisplay() {
+                document.querySelector('.js-score').innerHTML = 
+                    `Wins: ${movs.wins} | Losses: ${movs.loss} | Ties: ${movs.ties}`;
+            }
+
+            updateScoreDisplay();
+        </script>
+    </main>
+
+    <footer> <h2> &#128516; Thanks for Playing the Game &#128516; </h2> </footer>
+</body>
+</html>
